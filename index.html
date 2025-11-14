@@ -2,72 +2,436 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Bari Uke Transposer</title>
+<title>Zoë Tabs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body { margin:0; padding:20px; font-family:-apple-system,BlinkMacSystemFont,sans-serif; background:#0c111b; color:white; }
-textarea { width:100%; border-radius:10px; padding:10px; background:#0f1624; color:white; border:1px solid #444; }
-button { width:100%; padding:14px; margin-top:12px; border:none; border-radius:10px; background:#ffb347; font-size:18px; font-weight:700; color:black; }
-.panel { margin-top:20px; padding:16px; border-radius:10px; background:#131a2a; }
-.output { padding:12px; border-radius:10px; background:#0f1624; border:1px solid #333; min-height:60px; }
-.chord-tag { display:inline-block; margin:4px; padding:6px 10px; background:#1b2436; border-radius:10px; border:1px solid #555; }
-.diagram-card { margin-top:10px; padding:10px; background:#1b2436; border-radius:10px; border:1px solid #444; }
-pre { margin:0; font-family:menlo,monospace; }
+/* ===========================
+   BASE THEME VARIABLES
+   =========================== */
+
+:root {
+  --bg: #060713;
+  --bg-elevated: #0e1220;
+  --text-main: #f7f7ff;
+  --text-muted: #a6a9c8;
+  --accent: #ffb347;
+  --border-subtle: rgba(255,255,255,0.1);
+  --btn-gradient: linear-gradient(145deg, #ffcf71, #ff9a3c);
+}
+
+/* LIGHT THEME */
+body.light {
+  --bg: #f1f4ff;
+  --bg-elevated: #ffffff;
+  --text-main: #141626;
+  --text-muted: #5c6380;
+  --border-subtle: rgba(0,0,0,0.12);
+  --btn-gradient: linear-gradient(145deg, #ff9a3c, #ffd08b);
+}
+
+/* PINK THEME */
+body.pink {
+  --bg: #2b001e;
+  --bg-elevated: #3a0030;
+  --text-main: #ffe6fb;
+  --text-muted: #ff9ce7;
+  --border-subtle: rgba(255,255,255,0.17);
+  --btn-gradient: linear-gradient(145deg, #ff7bd4, #ff3ebc);
+}
+
+/* ===========================
+   BASIC STYLING
+   =========================== */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  background-size: cover;
+  background-position: center;
+  transition: background 0.3s, color 0.3s;
+  color: var(--text-main);
+}
+
+.app {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 20px 14px 40px;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 6px;
+}
+
+.brand-title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.menu-button {
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ===========================
+   DROPDOWN MENU
+   =========================== */
+
+.dropdown {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  width: 220px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  display: none;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.dropdown.active { display: block; }
+
+.dropdown h4 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.dropdown label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.dropdown select,
+.dropdown input[type="file"] {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg);
+  color: var(--text-main);
+}
+
+.dropdown button {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--btn-gradient);
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===========================
+   PANELS
+   =========================== */
+
+.panel {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+}
+
+.panel h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+/* ===========================
+   FORM ELEMENTS
+   =========================== */
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+}
+
+textarea:focus { outline: 2px solid var(--accent); }
+
+.btn-primary {
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  border-radius: 999px;
+  padding: 14px;
+  background: var(--btn-gradient);
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ===========================
+   OUTPUT BOXES
+   =========================== */
+
+.output-box {
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ===========================
+   CHORD TAGS
+   =========================== */
+
+.chord-tag {
+  display: inline-flex;
+  padding: 6px 10px;
+  margin: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255,255,255,0.05);
+  font-family: menlo, monospace;
+}
+
+.meta {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ===========================
+   DIAGRAMS
+   =========================== */
+
+.diagram-card {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-subtle);
+}
+
+.diagram-body {
+  white-space: pre;
+  font-family: menlo, monospace;
+  margin-top: 4px;
+}
+
+/* small animation */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
+
 <body>
+<div class="app">
 
-<h2>🎸 Guitar → Baritone Ukulele Transposer</h2>
-<p>Enter guitar chords and tap Transpose:</p>
+<!-- HEADER -->
+<header>
+  <div class="brand-title">Zoë Tabs</div>
+  <div class="menu-button" id="menuBtn">⋮</div>
+</header>
 
-<textarea id="inp" rows="4" placeholder="G D Em C"></textarea>
-<button onclick="run()">Transpose</button>
+<!-- DROPDOWN MENU -->
+<div class="dropdown" id="dropdownMenu">
+  <h4>Customize Zoë Tabs 💅</h4>
 
-<div class="panel">
-  <h3>Chords</h3>
-  <div id="outC" class="output"></div>
+  <label>Theme</label>
+  <select id="themeSelect">
+    <option value="default">Dark</option>
+    <option value="light">Light</option>
+    <option value="pink">Pink</option>
+  </select>
+
+  <label>Background Image</label>
+  <input type="file" id="bgUpload" accept="image/*">
+
+  <button id="resetBg">Reset Background</button>
 </div>
 
-<div class="panel">
-  <h3>Diagrams</h3>
-  <div id="outD" class="output"></div>
+<!-- CHORD PANEL -->
+<section class="panel">
+
+  <h2>Chord Transposer</h2>
+  <p class="sub">
+    Enter guitar chords below and tap “Let’s F*cking Go”.
+  </p>
+
+  <textarea id="chordInput"
+    placeholder="G D Em C&#10;Am F C G&#10;Or paste chord-over-lyric lines..."></textarea>
+
+  <button class="btn-primary" id="transposeBtn">Let’s F*cking Go</button>
+
+  <div id="chordList" class="output-box">Chords will appear here...</div>
+  <div id="diagramList" class="output-box">Diagrams will appear here...</div>
+
+</section>
+
 </div>
 
 <script>
-const SH = {
- G:{s:["0","0","0","3"]},
- D:{s:["0","0","2","3"]},
- Em:{s:["2","2","3","3"]},
- C:{s:["2","0","1","0"]},
- Am:{s:["2","2","1","0"]},
- F:{s:["3","2","1","1"]}
-};
-function grid(a){
- let o="  D  G  B  E\\n";
- for(let f=0; f<5; f++){
-   o+=f+" ";
-   for(let i=0;i<4;i++){
-     o+=(Number(a[i])===f? "●":"·")+"  ";
-   }
-   o+="\\n";
- }
- return o;
-}
-function run(){
- let raw=document.getElementById("inp").value.trim();
- let OC=document.getElementById("outC");
- let OD=document.getElementById("outD");
- if(!raw){OC.textContent="No input"; OD.textContent=""; return;}
- let toks=raw.split(/\\s+/).filter(t=>/^[A-G]/i.test(t));
- let seen=new Set(), names=[];
- toks.forEach(t=>{ if(!seen.has(t)){ seen.add(t); names.push(t);} });
- OC.innerHTML=""; names.forEach(n=>OC.innerHTML+=`<span class='chord-tag'>${n}</span>`);
- OD.innerHTML=""; names.forEach(n=>{
-   let base=n.split("/")[0]; let sh=SH[base];
-   OD.innerHTML+=`<div class='diagram-card'><strong>${n}</strong><br><pre>${sh?grid(sh.s):"No diagram"}</pre></div>`;
- });
-}
-</script>
+/* ===========================
+   MENU LOGIC
+   =========================== */
 
+const menuBtn = document.getElementById("menuBtn");
+const dropdownMenu = document.getElementById("dropdownMenu");
+
+menuBtn.addEventListener("click", () => {
+  dropdownMenu.classList.toggle("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+    dropdownMenu.classList.remove("active");
+  }
+});
+
+/* ===========================
+   THEME SWITCHING
+   =========================== */
+
+const themeSelect = document.getElementById("themeSelect");
+
+themeSelect.addEventListener("change", () => {
+  const theme = themeSelect.value;
+
+  document.body.classList.remove("light", "pink");
+
+  if (theme === "light") document.body.classList.add("light");
+  if (theme === "pink") document.body.classList.add("pink");
+
+  localStorage.setItem("zoeTheme", theme);
+});
+
+// load saved theme
+const savedTheme = localStorage.getItem("zoeTheme");
+if (savedTheme) {
+  themeSelect.value = savedTheme;
+  themeSelect.dispatchEvent(new Event("change"));
+}
+
+/* ===========================
+   BACKGROUND UPLOAD
+   =========================== */
+
+const bgUpload = document.getElementById("bgUpload");
+const resetBg = document.getElementById("resetBg");
+
+bgUpload.addEventListener("change", () => {
+  const file = bgUpload.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const dataURL = e.target.result;
+    document.body.style.backgroundImage = `url(${dataURL})`;
+    localStorage.setItem("zoeCustomBg", dataURL);
+  };
+  reader.readAsDataURL(file);
+});
+
+resetBg.addEventListener("click", () => {
+  localStorage.removeItem("zoeCustomBg");
+  document.body.style.backgroundImage = "";
+});
+
+// load background
+const savedBg = localStorage.getItem("zoeCustomBg");
+if (savedBg) {
+  document.body.style.backgroundImage = `url(${savedBg})`;
+}
+
+/* ===========================
+   CHORD TRANSPOSE LOGIC
+   =========================== */
+
+const BARITONE = {
+  "C": ["2","0","1","0"],
+  "D": ["0","0","2","3"],
+  "E": ["2","2","1","0"],
+  "F": ["3","2","1","1"],
+  "G": ["0","0","0","3"],
+  "A": ["2","2","2","0"],
+  "Am": ["2","2","1","0"],
+  "Em": ["2","2","3","3"]
+};
+
+function renderGrid(shape) {
+  const labels = "  D  G  B  E\n";
+  let s = labels;
+  for (let f = 0; f <= 4; f++) {
+    s += f + " ";
+    for (let i = 0; i < 4; i++) {
+      s += (Number(shape[i]) === f ? "●" : "·") + "  ";
+    }
+    s += "\n";
+  }
+  return s;
+}
+
+document.getElementById("transposeBtn").addEventListener("click", () => {
+  const text = document.getElementById("chordInput").value;
+  const tokens = text.split(/\s+/).filter(t => /^[A-G][#b]?(m|maj7|7)?$/.test(t));
+
+  const chordList = document.getElementById("chordList");
+  const diagList = document.getElementById("diagramList");
+
+  chordList.innerHTML = "";
+  diagList.innerHTML = "";
+
+  tokens.forEach(c => {
+    const tag = document.createElement("span");
+    tag.className = "chord-tag";
+    tag.textContent = c;
+    chordList.appendChild(tag);
+
+    const card = document.createElement("div");
+    card.className = "diagram-card";
+
+    const shape = BARITONE[c];
+
+    card.innerHTML = `
+      <strong>${c}</strong>
+      <div class="diagram-body">${shape ? renderGrid(shape) : "No diagram available."}</div>
+    `;
+
+    diagList.appendChild(card);
+  });
+});
+</script>
 </body>
 </html>

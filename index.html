@@ -6,10 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-/* ===========================
-   BASE THEME VARIABLES
-   =========================== */
-
 :root {
   --bg: #060713;
   --bg-elevated: #0e1220;
@@ -20,7 +16,7 @@
   --btn-gradient: linear-gradient(145deg, #ffcf71, #ff9a3c);
 }
 
-/* LIGHT THEME */
+/* light */
 body.light {
   --bg: #f1f4ff;
   --bg-elevated: #ffffff;
@@ -30,7 +26,7 @@ body.light {
   --btn-gradient: linear-gradient(145deg, #ff9a3c, #ffd08b);
 }
 
-/* PINK THEME */
+/* pink */
 body.pink {
   --bg: #2b001e;
   --bg-elevated: #3a0030;
@@ -40,345 +36,248 @@ body.pink {
   --btn-gradient: linear-gradient(145deg, #ff7bd4, #ff3ebc);
 }
 
-/* ===========================
-   BASIC STYLING
-   =========================== */
-
 * { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  margin:0; padding:0;
+  font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
   background: var(--bg);
   background-size: cover;
   background-position: center;
+  color:var(--text-main);
   transition: background 0.3s, color 0.3s;
-  color: var(--text-main);
 }
 
 .app {
-  max-width: 920px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 20px 14px 40px;
 }
 
-/* ===========================
-   HEADER
-   =========================== */
+/* header */
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 6px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 4px;
 }
 
 .brand-title {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-size:28px;
+  font-weight:800;
+  letter-spacing:-0.5px;
 }
 
 .menu-button {
-  font-size: 26px;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
+  font-size:26px;
+  cursor:pointer;
+  padding:6px 12px;
+  border-radius:8px;
+  background:var(--bg-elevated);
+  border:1px solid var(--border-subtle);
 }
 
-/* ===========================
-   DROPDOWN MENU
-   =========================== */
+/* dropdown */
 
 .dropdown {
-  position: absolute;
-  right: 20px;
-  top: 70px;
-  width: 220px;
-  padding: 14px;
-  border-radius: 12px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  display: none;
-  animation: fadeIn 0.2s ease-out;
+  position:absolute;
+  right:20px;
+  top:70px;
+  width:240px;
+  padding:14px;
+  border-radius:12px;
+  background:var(--bg-elevated);
+  border:1px solid var(--border-subtle);
+  display:none;
+  animation:fadeIn 0.2s ease-out;
 }
-
-.dropdown.active { display: block; }
-
-.dropdown h4 {
-  margin: 0 0 10px;
-  font-size: 15px;
-}
-
-.dropdown label {
-  display: block;
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
+.dropdown.active { display:block; }
+.dropdown h4{margin:0 0 8px;font-size:15px;}
+.dropdown label{display:block;margin-top:10px;font-size:13px;color:var(--text-muted);}
 .dropdown select,
-.dropdown input[type="file"] {
-  width: 100%;
-  margin-top: 4px;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg);
-  color: var(--text-main);
+.dropdown input[type="file"]{
+  width:100%;margin-top:4px;padding:6px;border-radius:6px;
+  border:1px solid var(--border-subtle);background:var(--bg);color:var(--text-main);
+}
+.dropdown button{
+  margin-top:10px;width:100%;border:none;padding:8px;border-radius:6px;
+  background:var(--btn-gradient);color:#000;font-weight:600;cursor:pointer;
 }
 
-.dropdown button {
-  margin-top: 10px;
-  width: 100%;
-  border: none;
-  padding: 8px;
-  border-radius: 6px;
-  background: var(--btn-gradient);
-  color: black;
-  font-weight: 600;
-  cursor: pointer;
+/* panels */
+
+.panel{
+  margin-top:18px;padding:16px;border-radius:18px;
+  background:var(--bg-elevated);border:1px solid var(--border-subtle);
+  box-shadow:0 14px 30px rgba(0,0,0,0.4);
+}
+.panel h2{margin:0 0 4px;font-size:18px;}
+.sub{font-size:13px;color:var(--text-muted);margin:0 0 12px;}
+
+/* textareas/buttons */
+
+textarea,input[type="text"]{
+  width:100%;border-radius:12px;padding:10px;font-size:14px;
+  background:var(--bg);color:var(--text-main);
+  border:1px solid var(--border-subtle);
+}
+textarea:focus,input[type="text"]:focus{
+  outline:2px solid var(--accent);
 }
 
-/* ===========================
-   PANELS
-   =========================== */
-
-.panel {
-  margin-top: 18px;
-  padding: 16px;
-  border-radius: 18px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+.btn-primary{
+  width:100%;margin-top:12px;border:none;border-radius:999px;
+  padding:14px;background:var(--btn-gradient);color:#000;
+  font-weight:700;font-size:18px;cursor:pointer;
+}
+.btn-secondary{
+  border:none;border-radius:999px;padding:8px 12px;
+  font-size:13px;background:rgba(255,255,255,0.08);
+  color:var(--text-muted);cursor:pointer;
 }
 
-.panel h2 {
-  margin: 0 0 4px;
-  font-size: 18px;
+/* outputs */
+
+.output-box{
+  margin-top:12px;padding:12px;border-radius:12px;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);
+  font-size:14px;
 }
 
-.sub {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin: 0 0 12px;
+.chord-tag{
+  display:inline-flex;padding:6px 10px;margin:4px;
+  border-radius:999px;border:1px solid var(--border-subtle);
+  background:rgba(255,255,255,0.08);font-family:menlo,monospace;
+}
+.meta{margin-left:8px;font-size:11px;color:var(--text-muted);}
+
+.diagram-card{
+  margin-top:8px;padding:10px;border-radius:10px;
+  background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);
+}
+.diagram-body{
+  margin-top:4px;white-space:pre;font-family:menlo,monospace;font-size:12px;
 }
 
-/* ===========================
-   FORM ELEMENTS
-   =========================== */
+/* youtube tab block */
 
-textarea {
-  width: 100%;
-  min-height: 80px;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 14px;
-  background: var(--bg);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
+pre{
+  margin:0;white-space:pre-wrap;font-family:menlo,monospace;font-size:12px;
 }
 
-textarea:focus { outline: 2px solid var(--accent); }
-
-.btn-primary {
-  width: 100%;
-  margin-top: 12px;
-  border: none;
-  border-radius: 999px;
-  padding: 14px;
-  background: var(--btn-gradient);
-  color: #000;
-  font-weight: 700;
-  font-size: 18px;
-  cursor: pointer;
+.row{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;
 }
+.row span.hint{font-size:12px;color:var(--text-muted);}
 
-/* ===========================
-   OUTPUT BOXES
-   =========================== */
-
-.output-box {
-  padding: 12px;
-  margin-top: 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border-subtle);
-}
-
-/* ===========================
-   CHORD TAGS
-   =========================== */
-
-.chord-tag {
-  display: inline-flex;
-  padding: 6px 10px;
-  margin: 4px;
-  border-radius: 999px;
-  border: 1px solid var(--border-subtle);
-  background: rgba(255,255,255,0.05);
-  font-family: menlo, monospace;
-}
-
-.meta {
-  margin-left: 8px;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* ===========================
-   DIAGRAMS
-   =========================== */
-
-.diagram-card {
-  margin-top: 10px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border-subtle);
-}
-
-.diagram-body {
-  white-space: pre;
-  font-family: menlo, monospace;
-  margin-top: 4px;
-}
-
-/* small animation */
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-10px);}
+  to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
-
 <body>
 <div class="app">
 
-<!-- HEADER -->
-<header>
-  <div class="brand-title">Zoë Tabs</div>
-  <div class="menu-button" id="menuBtn">⋮</div>
-</header>
+  <!-- HEADER -->
+  <header>
+    <div class="brand-title">Zoë Tabs</div>
+    <div class="menu-button" id="menuBtn">⋮</div>
+  </header>
 
-<!-- DROPDOWN MENU -->
-<div class="dropdown" id="dropdownMenu">
-  <h4>Customize Zoë Tabs 💅</h4>
+  <!-- DROPDOWN MENU -->
+  <div class="dropdown" id="dropdownMenu">
+    <h4>Customize Zoë Tabs 💅</h4>
+    <label>Theme</label>
+    <select id="themeSelect">
+      <option value="default">Dark</option>
+      <option value="light">Light</option>
+      <option value="pink">Pink</option>
+    </select>
+    <label>Background image</label>
+    <input type="file" id="bgUpload" accept="image/*">
+    <button id="resetBg">Reset Background</button>
+  </div>
 
-  <label>Theme</label>
-  <select id="themeSelect">
-    <option value="default">Dark</option>
-    <option value="light">Light</option>
-    <option value="pink">Pink</option>
-  </select>
+  <!-- CHORD TRANSPOSER -->
+  <section class="panel">
+    <h2>Chord Transposer</h2>
+    <p class="sub">Enter guitar chords and hit “Let’s F*cking Go”.</p>
+    <textarea id="chordInput"
+      placeholder="G D Em C&#10;Am F C G&#10;G       D&#10;When I find myself in times of trouble"></textarea>
+    <button class="btn-primary" id="transposeBtn">Let’s F*cking Go</button>
+    <div id="chordList" class="output-box">Chords will appear here...</div>
+    <div id="diagramList" class="output-box">Diagrams will appear here...</div>
+  </section>
 
-  <label>Background Image</label>
-  <input type="file" id="bgUpload" accept="image/*">
-
-  <button id="resetBg">Reset Background</button>
-</div>
-
-<!-- CHORD PANEL -->
-<section class="panel">
-
-  <h2>Chord Transposer</h2>
-  <p class="sub">
-    Enter guitar chords below and tap “Let’s F*cking Go”.
-  </p>
-
-  <textarea id="chordInput"
-    placeholder="G D Em C&#10;Am F C G&#10;Or paste chord-over-lyric lines..."></textarea>
-
-  <button class="btn-primary" id="transposeBtn">Let’s F*cking Go</button>
-
-  <div id="chordList" class="output-box">Chords will appear here...</div>
-  <div id="diagramList" class="output-box">Diagrams will appear here...</div>
-
-</section>
+  <!-- AI YOUTUBE → TABS -->
+  <section class="panel">
+    <h2>AI: YouTube → Ukulele Tabs</h2>
+    <p class="sub">
+      Paste a YouTube link and I’ll call the Zoë Tabs AI backend to generate uke-friendly TAB.
+      (20s-ish is normal on a free server.)
+    </p>
+    <input type="text" id="ytUrl" placeholder="https://www.youtube.com/watch?v=...">
+    <div class="row">
+      <button class="btn-primary" id="ytBtn">Generate Tabs (AI)</button>
+      <span class="hint" id="ytStatus">Status: idle</span>
+    </div>
+    <div class="output-box">
+      <strong>Chords (AI guess)</strong>
+      <div id="ytChords">–</div>
+    </div>
+    <div class="output-box">
+      <strong>Ukulele TAB (AI)</strong>
+      <pre id="ytTab">(nothing yet)</pre>
+    </div>
+  </section>
 
 </div>
 
 <script>
-/* ===========================
-   MENU LOGIC
-   =========================== */
-
+// ===== MENU / THEME / BACKGROUND =====
 const menuBtn = document.getElementById("menuBtn");
 const dropdownMenu = document.getElementById("dropdownMenu");
-
-menuBtn.addEventListener("click", () => {
-  dropdownMenu.classList.toggle("active");
-});
-
-document.addEventListener("click", (e) => {
-  if (!dropdownMenu.contains(e.target) && e.target !== menuBtn) {
+menuBtn.addEventListener("click", () => dropdownMenu.classList.toggle("active"));
+document.addEventListener("click", (e)=>{
+  if(!dropdownMenu.contains(e.target) && e.target!==menuBtn){
     dropdownMenu.classList.remove("active");
   }
 });
 
-/* ===========================
-   THEME SWITCHING
-   =========================== */
-
 const themeSelect = document.getElementById("themeSelect");
-
-themeSelect.addEventListener("change", () => {
-  const theme = themeSelect.value;
-
-  document.body.classList.remove("light", "pink");
-
-  if (theme === "light") document.body.classList.add("light");
-  if (theme === "pink") document.body.classList.add("pink");
-
-  localStorage.setItem("zoeTheme", theme);
+themeSelect.addEventListener("change", ()=>{
+  const t = themeSelect.value;
+  document.body.classList.remove("light","pink");
+  if(t==="light") document.body.classList.add("light");
+  if(t==="pink") document.body.classList.add("pink");
+  localStorage.setItem("zoeTheme", t);
 });
-
-// load saved theme
 const savedTheme = localStorage.getItem("zoeTheme");
-if (savedTheme) {
-  themeSelect.value = savedTheme;
-  themeSelect.dispatchEvent(new Event("change"));
-}
-
-/* ===========================
-   BACKGROUND UPLOAD
-   =========================== */
+if(savedTheme){ themeSelect.value=savedTheme; themeSelect.dispatchEvent(new Event("change")); }
 
 const bgUpload = document.getElementById("bgUpload");
 const resetBg = document.getElementById("resetBg");
-
-bgUpload.addEventListener("change", () => {
+bgUpload.addEventListener("change", ()=>{
   const file = bgUpload.files[0];
-  if (!file) return;
-
+  if(!file) return;
   const reader = new FileReader();
-  reader.onload = (e) => {
+  reader.onload = e=>{
     const dataURL = e.target.result;
     document.body.style.backgroundImage = `url(${dataURL})`;
-    localStorage.setItem("zoeCustomBg", dataURL);
+    localStorage.setItem("zoeBg", dataURL);
   };
   reader.readAsDataURL(file);
 });
-
-resetBg.addEventListener("click", () => {
-  localStorage.removeItem("zoeCustomBg");
+resetBg.addEventListener("click", ()=>{
+  localStorage.removeItem("zoeBg");
   document.body.style.backgroundImage = "";
 });
+const savedBg = localStorage.getItem("zoeBg");
+if(savedBg){ document.body.style.backgroundImage = `url(${savedBg})`; }
 
-// load background
-const savedBg = localStorage.getItem("zoeCustomBg");
-if (savedBg) {
-  document.body.style.backgroundImage = `url(${savedBg})`;
-}
-
-/* ===========================
-   CHORD TRANSPOSE LOGIC
-   =========================== */
-
+// ===== SIMPLE BARITONE CHORD SHAPES =====
 const BARITONE = {
   "C": ["2","0","1","0"],
   "D": ["0","0","2","3"],
@@ -386,52 +285,101 @@ const BARITONE = {
   "F": ["3","2","1","1"],
   "G": ["0","0","0","3"],
   "A": ["2","2","2","0"],
-  "Am": ["2","2","1","0"],
-  "Em": ["2","2","3","3"]
+  "Am":["2","2","1","0"],
+  "Em":["2","2","3","3"]
 };
-
-function renderGrid(shape) {
-  const labels = "  D  G  B  E\n";
+function renderGrid(shape){
+  const labels = "  D  G  B  E\\n";
   let s = labels;
-  for (let f = 0; f <= 4; f++) {
+  for(let f=0;f<=4;f++){
     s += f + " ";
-    for (let i = 0; i < 4; i++) {
-      s += (Number(shape[i]) === f ? "●" : "·") + "  ";
+    for(let i=0;i<4;i++){
+      s += (Number(shape[i])===f ? "●" : "·") + "  ";
     }
-    s += "\n";
+    s += "\\n";
   }
   return s;
 }
 
+// ===== CHORD TRANSPOSE BUTTON =====
 document.getElementById("transposeBtn").addEventListener("click", () => {
   const text = document.getElementById("chordInput").value;
-  const tokens = text.split(/\s+/).filter(t => /^[A-G][#b]?(m|maj7|7)?$/.test(t));
-
+  const tokens = text.split(/\\s+/).filter(t => /^[A-G][#b]?(m|maj7|7)?$/.test(t));
   const chordList = document.getElementById("chordList");
   const diagList = document.getElementById("diagramList");
-
   chordList.innerHTML = "";
   diagList.innerHTML = "";
-
-  tokens.forEach(c => {
+  if(!tokens.length){
+    chordList.textContent = "No chord-like tokens found.";
+    diagList.textContent = "";
+    return;
+  }
+  const seen = new Set();
+  tokens.forEach(c=>{
+    if(seen.has(c)) return;
+    seen.add(c);
     const tag = document.createElement("span");
     tag.className = "chord-tag";
     tag.textContent = c;
     chordList.appendChild(tag);
-
     const card = document.createElement("div");
     card.className = "diagram-card";
-
     const shape = BARITONE[c];
-
-    card.innerHTML = `
-      <strong>${c}</strong>
-      <div class="diagram-body">${shape ? renderGrid(shape) : "No diagram available."}</div>
-    `;
-
+    card.innerHTML = "<strong>"+c+"</strong><div class='diagram-body'>"+
+      (shape ? renderGrid(shape) : "No diagram available yet.")+"</div>";
     diagList.appendChild(card);
   });
+});
+
+// ===== AI YOUTUBE → TABS =====
+const ytBtn = document.getElementById("ytBtn");
+const ytStatus = document.getElementById("ytStatus");
+const ytTab = document.getElementById("ytTab");
+const ytChords = document.getElementById("ytChords");
+
+// TODO: replace with your real Railway backend URL
+const BACKEND_URL = "https://zoe-tabs-ai.onrender.com";
+
+ytBtn.addEventListener("click", async ()=>{
+  const url = document.getElementById("ytUrl").value.trim();
+  if(!url){
+    alert("Paste a YouTube URL first.");
+    return;
+  }
+  if(!BACKEND_URL || BACKEND_URL.includes("YOUR_BACKEND_URL_HERE")){
+    alert("You still need to set BACKEND_URL in index.html to your Railway backend URL.");
+    return;
+  }
+  ytStatus.textContent = "Status: working (this can take ~20 seconds on free tier)...";
+  ytBtn.disabled = true;
+  ytBtn.textContent = "Working...";
+  ytTab.textContent = "";
+  ytChords.textContent = "–";
+  try{
+    const resp = await fetch(BACKEND_URL + "/api/youtube-to-tabs", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({youtube_url:url})
+    });
+    const data = await resp.json();
+    if(data.message){
+      ytStatus.textContent = "Status: " + data.message;
+    } else {
+      ytStatus.textContent = "Status: done";
+    }
+    ytTab.textContent = data.tab || "(no tab returned)";
+    ytChords.textContent = (data.chords && data.chords.length)
+      ? data.chords.join(" · ")
+      : "–";
+  } catch (err){
+    ytStatus.textContent = "Status: error calling backend";
+    ytTab.textContent = String(err);
+  } finally {
+    ytBtn.disabled = false;
+    ytBtn.textContent = "Generate Tabs (AI)";
+  }
 });
 </script>
 </body>
 </html>
+
